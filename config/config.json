@@ -19,6 +19,6 @@
     "password": null,
     "database": "recipe_microservice_database_production",
     "host": "127.0.0.1",
-    "dialect": "postgres,
+    "dialect": "postgres"
   }
 }
