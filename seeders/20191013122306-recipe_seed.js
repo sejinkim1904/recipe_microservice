@@ -2,6 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
+
     return queryInterface.bulkInsert("Recipes", [
       {
           "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_09b4dbdf0c7244c462a4d2622d88958e",
