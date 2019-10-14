@@ -20,6 +20,9 @@ module.exports = {
       url: {
         type: Sequelize.STRING
       },
+      yield: {
+        type: Sequelize.FLOAT
+      },
       calories: {
         type: Sequelize.FLOAT
       },
