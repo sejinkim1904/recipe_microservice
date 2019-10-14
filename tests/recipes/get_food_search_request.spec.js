@@ -31,7 +31,7 @@ describe('Recipes API', () => {
           expect(Object.keys(response.body[0])).toContain("ingredients")
           expect(Object.keys(response.body[0])).toContain("calories")
           expect(Object.keys(response.body[0])).toContain("totalTime")
-        })
-    })
-  })
-})
+        });
+    });
+  });
+});
