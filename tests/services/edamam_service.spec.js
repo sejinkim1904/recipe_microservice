@@ -18,8 +18,9 @@ describe('Edamam Service', () => {
         let hits = response.hits
         expect(Object.keys(hits[0])).toContain("recipe")
         expect(Object.keys(hits[0].recipe)).toContain("label")
-        expect(Object.keys(hits[0].recipe)).toContain("uri")
+        expect(Object.keys(hits[0].recipe)).toContain("url")
         expect(Object.keys(hits[0].recipe)).toContain("image")
+        expect(Object.keys(hits[0].recipe)).toContain("yield")
         expect(Object.keys(hits[0].recipe)).toContain("ingredientLines")
         expect(Object.keys(hits[0].recipe)).toContain("calories")
         expect(Object.keys(hits[0].recipe)).toContain("totalTime")
