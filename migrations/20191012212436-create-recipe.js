@@ -11,10 +11,13 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      foodType: {
+        type: Sequelize.STRING
+      },
       image: {
         type: Sequelize.STRING
       },
-      uri: {
+      url: {
         type: Sequelize.STRING
       },
       calories: {
