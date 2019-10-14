@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.addColumn(
       'Recipes',
       'yield',
-      Sequelize.STRING
+      Sequelize.FLOAT
     );
   },
 
