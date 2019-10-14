@@ -21,6 +21,21 @@ class EdamamService {
         return error
       })
   }
+
+  async getRecipesByCalories(from, to) {
+    const url = 'https://api.edamam.com/search?'
+    const app_id = `app_id=${id}&`
+    const app_key = `app_key=${key}&`
+    const params = `q=${this.foodType}&to=10&time=1%2B&calories=${from}-${to}`
+
+    return await axios.get(`${url}${app_id}${app_key}${params}`)
+      .then(async response => {
+        return await response.data
+      })
+      .catch(async error => {
+        return error
+      })
+  }
 }
 
 module.exports = { EdamamService: EdamamService }
