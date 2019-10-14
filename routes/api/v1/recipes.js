@@ -189,7 +189,7 @@ router.get('/avg_calories', async (req, res, next) => {
         )
         return;
       };
-      res.status(200).send(recipes)
+      res.status(200).send(recipes[0])
     })
     .catch(async error => {
       res.status(500).send( {error} )
