@@ -7,18 +7,18 @@ class EdamamService {
     this.foodType = foodType
   }
 
-  getRecipes() {
-    return axios.get("https://api.edamam.com/search", {
-      params: {
-        q: this.foodType,
-        app_id: id,
-        app_key: key,
-        to: 10,
-        time: '1%2B'
-      }
-    })
-      .then(response => {
-        return response
+  async getRecipes() {
+    const url = 'https://api.edamam.com/search?'
+    const app_id = `app_id=${id}&`
+    const app_key = `app_key=${key}&`
+    const params = `q=${this.foodType}&to=10&time=1%2B`
+
+    return await axios.get(`${url}${app_id}${app_key}${params}`)
+      .then(async response => {
+        return await response.data
+      })
+      .catch(async error => {
+        return error
       })
   }
 }
