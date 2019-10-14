@@ -57,7 +57,7 @@ router.get('/calorie_search', async (req, res, next) => {
     }
   })
     .then(async recipes => {
-      if (recipes.length === 0) {
+      if (recipes.length < 10) {
         let edamam = await new edamamService(req.query.q);
         let from = req.query.from
         let to = req.query.to
@@ -104,7 +104,7 @@ router.get('/time_search', async (req, res, next) => {
     }
   })
     .then(async recipes => {
-      if (recipes.length === 0) {
+      if (recipes.length < 10) {
         let edamam = await new edamamService(req.query.q);
         let max = req.query.max
 
