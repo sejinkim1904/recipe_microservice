@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const recipe = require('../../../models').Recipe;
-const Sequelize = require('Sequelize');
+const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const edamamService = require('../../../services/edamam_service').EdamamService
 
