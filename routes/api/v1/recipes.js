@@ -196,4 +196,22 @@ router.get('/avg_calories', async (req, res, next) => {
     });
 });
 
+router.get('/yield_search', async (req, res, next) => {
+  res.setHeader('Content-Type', 'application/json')
+  let createdRecipes = []
+
+  await recipe.findAll({
+    where: {
+      foodType: req.query.q,
+      yield: req.query.yield
+    }
+  })
+    .then(async recipes => {
+      res.status(200).send(recipes)
+    })
+    .catch(async error => {
+      res.status(500).send( {error} )
+    });
+});
+
 module.exports = router;
