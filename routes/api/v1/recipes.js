@@ -10,11 +10,11 @@ router.get('/food_search', async (req, res, next) => {
   let createdRecipes = []
 
   await recipe.findAll({
-    where: { foodType: req.query.q }
+    where: { foodType: req.query.food_type }
   })
     .then(async recipes => {
       if (recipes.length === 0) {
-        let edamam = await new edamamService(req.query.q);
+        let edamam = await new edamamService(req.query.food_type);
 
         await edamam.getRecipes().then(async edamamResponse => {
           let edamamRecipes = await edamamResponse.hits;
@@ -23,7 +23,7 @@ router.get('/food_search', async (req, res, next) => {
             let result = edamamRecipes[i];
             await recipe.create({
               name: result.recipe.label,
-              foodType: req.query.q,
+              foodType: req.query.food_type,
               image: result.recipe.image,
               url: result.recipe.url,
               calories: result.recipe.calories,
@@ -52,17 +52,17 @@ router.get('/calorie_search', async (req, res, next) => {
 
   await recipe.findAll({
     where: {
-      foodType: req.query.q,
+      foodType: req.query.food_type,
       calories: { [Op.between]: [req.query.from, req.query.to] },
     }
   })
     .then(async recipes => {
       if (recipes.length < 10) {
-        let edamam = await new edamamService(req.query.q);
+        let edamam = await new edamamService(req.query.food_type);
         let from = req.query.from
         let to = req.query.to
 
-        await edamam.getRecipesByCalories(from, to)
+        await edamam.getRecipes('1%2B', from, to)
           .then(async edamamResponse => {
             let edamamRecipes = await edamamResponse.hits;
 
@@ -70,7 +70,7 @@ router.get('/calorie_search', async (req, res, next) => {
               let result = edamamRecipes[i];
               await recipe.create({
                 name: result.recipe.label,
-                foodType: req.query.q,
+                foodType: req.query.food_type,
                 image: result.recipe.image,
                 url: result.recipe.url,
                 calories: result.recipe.calories,
@@ -99,23 +99,23 @@ router.get('/time_search', async (req, res, next) => {
 
   await recipe.findAll({
     where: {
-      foodType: req.query.q,
+      foodType: req.query.food_type,
       totalTime: { [Op.lte]: req.query.max },
     }
   })
     .then(async recipes => {
       if (recipes.length < 10) {
-        let edamam = await new edamamService(req.query.q);
+        let edamam = await new edamamService(req.query.food_type);
         let max = req.query.max
 
-        await edamam.getRecipesByTime(max)
+        await edamam.getRecipes(max)
           .then(async edamamResponse => {
             let edamamRecipes = await edamamResponse.hits;
             for (let i = 0; i < edamamRecipes.length; i++) {
               let result = edamamRecipes[i];
               await recipe.create({
                 name: result.recipe.label,
-                foodType: req.query.q,
+                foodType: req.query.food_type,
                 image: result.recipe.image,
                 url: result.recipe.url,
                 calories: result.recipe.calories,
@@ -144,16 +144,15 @@ router.get('/avg_calories', async (req, res, next) => {
 
   await recipe.findAll({
     where: {
-      foodType: req.query.q,
+      foodType: req.query.food_type,
     },
     attributes: [
       [Sequelize.fn('AVG', Sequelize.col('calories')),'averageCalories']
     ],
-    // group: [ 'Recipe.id' ]
   })
     .then(async recipes => {
       if (recipes[0].dataValues.averageCalories === null) {
-        let edamam = await new edamamService(req.query.q);
+        let edamam = await new edamamService(req.query.food_type);
 
         await edamam.getRecipes()
           .then(async edamamResponse => {
@@ -162,7 +161,7 @@ router.get('/avg_calories', async (req, res, next) => {
               let result = edamamRecipes[i];
               await recipe.create({
                 name: result.recipe.label,
-                foodType: req.query.q,
+                foodType: req.query.food_type,
                 image: result.recipe.image,
                 url: result.recipe.url,
                 calories: result.recipe.calories,
@@ -189,7 +188,11 @@ router.get('/avg_calories', async (req, res, next) => {
         )
         return;
       };
-      res.status(200).send(recipes[0])
+      let avgCal = parseFloat(recipes[0].dataValues.averageCalories.toFixed(2))
+
+      res.status(200).send(
+        { averageCalories: avgCal }
+      )
     })
     .catch(async error => {
       res.status(500).send( {error} )
@@ -202,7 +205,7 @@ router.get('/yield_search', async (req, res, next) => {
 
   await recipe.findAll({
     where: {
-      foodType: req.query.q,
+      foodType: req.query.food_type,
       yield: req.query.yield
     }
   })
