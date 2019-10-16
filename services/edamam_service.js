@@ -7,48 +7,17 @@ class EdamamService {
     this.foodType = foodType
   }
 
-  async getRecipes() {
+  async getRecipes(max = 100000, from = 0, to = 100000) {
     const url = 'https://api.edamam.com/search?'
     const app_id = `app_id=${id}&`
     const app_key = `app_key=${key}&`
-    const params = `q=${this.foodType}&to=10&time=1%2B`
+    const calories = `calories=${from}-${to}`
+    const time = `time=1-${max}`
+    const params = `q=${this.foodType}&to=10&${time}&${calories}`
 
     return await axios.get(`${url}${app_id}${app_key}${params}`)
       .then(async response => {
         return await response.data
-      })
-      .catch(async error => {
-        return error
-      })
-  }
-
-  async getRecipesByCalories(from, to) {
-    const url = 'https://api.edamam.com/search?'
-    const app_id = `app_id=${id}&`
-    const app_key = `app_key=${key}&`
-    const params = `q=${this.foodType}&to=10&time=1%2B&calories=${from}-${to}`
-
-    return await axios.get(`${url}${app_id}${app_key}${params}`)
-      .then(async response => {
-        return await response.data
-      })
-      .catch(async error => {
-        return error
-      })
-  }
-
-  async getRecipesByTime(max) {
-    const url = 'https://api.edamam.com/search?'
-    const app_id = `app_id=${id}&`
-    const app_key = `app_key=${key}&`
-    const params = `q=${this.foodType}&to=10&time=1-${max}`
-
-    return await axios.get(`${url}${app_id}${app_key}${params}`)
-      .then(async response => {
-        return await response.data
-      })
-      .catch(async error => {
-        return error
       })
   }
 }
