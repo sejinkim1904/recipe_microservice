@@ -405,7 +405,7 @@ describe('Recipes API', () => {
           ]
       });
 
-      return request(app).get('/api/v1/recipes/yield_search?q=chicken&yield=4')
+      return request(app).get('/api/v1/recipes/yield_search?food_type=chicken&yield=4')
         .then(response => {
           expect(response.status).toBe(200)
           expect(response.body.length).toBe(7)
