@@ -1,7 +1,7 @@
 # Project: Recipe Microservice
 
 ## Visit the app on Heroku:
-https://calm-inlet-?????.herokuapp.com/
+https://calm-inlet-34380.herokuapp.com/
 
 ## Contributors
 * [Sejin Kim](https://github.com/froydroyce)
@@ -29,7 +29,7 @@ https://calm-inlet-?????.herokuapp.com/
 https://github.com/froydroyce/recipe_microservice
 
 ## Database Diagram
-![schema](./public/images/schema.png)
+![schema](./public/images/recipes_schema.png)
 
 ## Local Setup
   ### Instructions:
