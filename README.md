@@ -7,10 +7,11 @@ https://calm-inlet-?????.herokuapp.com/
 * [Sejin Kim](https://github.com/froydroyce)
 * [Stella Mainar](https://github.com/smainar)
 
-## Intent  
+## About the Project  
 * The Recipe Microservice was a paired project completed in 10-days as a requirement for the Turing School of Software and Design, Back-End Engineering Program (Module 4).
 * The purpose was to build an independent microservice using the Edamam API to search for recipes with a particular food type (e.g. chicken, potato, etc.).
-* Five endpoints are exposed and a recipes table is built in this microservice.
+* A recipes table is built in this microservice.
+* Five endpoints are exposed (see below).
 
 ## Tech Stack
 * Express.js
@@ -21,9 +22,8 @@ https://calm-inlet-?????.herokuapp.com/
 * JavaScript
 
 ## Packages Used
-* axios
-* dotenv
-* jest
+* Axios
+* Dotenv
 
 ## GitHub Repository
 https://github.com/froydroyce/recipe_microservice
