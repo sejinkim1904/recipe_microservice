@@ -53,7 +53,7 @@ https://github.com/froydroyce/recipe_microservice
 
 ***Request:***
 ```
-GET /api/v1/recipes/food_search?q=<food_type>
+GET /api/v1/recipes/food_search?food_type=<food_type>
 Content-Type: application/json
 Accept: application/json
 ```
@@ -94,7 +94,7 @@ body:
 
 ***Request:***
 ```
-GET /api/v1/recipes/calorie_search?q=<food_type>&from=<calories_min>&to=<calories_max>
+GET /api/v1/recipes/calorie_search?food_type=<food_type>&from=<calories_min>&to=<calories_max>
 Content-Type: application/json
 Accept: application/json
 ```
@@ -144,7 +144,7 @@ body:
 
 ***Request:***
 ```
-GET /api/v1/recipes/time_search?q=<food_type>&max=<minutes>
+GET /api/v1/recipes/time_search?food_type=<food_type>&max=<minutes>
 Content-Type: application/json
 Accept: application/json
 ```
@@ -197,7 +197,7 @@ Accept: application/json
 
 ***Request:***
 ```
-GET /api/v1/recipes/avg_calories?q=<food_type>
+GET /api/v1/recipes/avg_calories?food_type=<food_type>
 Content-Type: application/json
 Accept: application/json
 ```
@@ -216,7 +216,7 @@ body:
 
 ***Request:***
 ```
-GET /api/v1/recipes/yield_search/?q=<food_type>&yield=<number>
+GET /api/v1/recipes/yield_search/?food_type=<food_type>&yield=<number>
 Content-Type: application/json
 Accept: application/json
 ```
